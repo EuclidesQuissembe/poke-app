@@ -13,33 +13,51 @@ import { ApplicationState } from '../../store';
 import * as LeagueActions from '../../store/modules/leagues/actions';
 
 // Styles
-import { Container } from './styles'
+import { Container } from './styles';
+
+// Context
+import { useApp } from '../../hooks/useApp';
 
 // Components
 import LeagueList from './components/leagueList';
+import Custom from '../../components/custom';
+import Loading from '../../components/loading';
 
 // Types
 import { Props } from './types';
+import { League } from '../../store/modules/leagues/types';
 
 const Home: React.FC<Props> = ({ leagues, loadRequest, navigation }) => {
+  const { setLeague } = useApp();
+
   useEffect(() => {
     loadRequest();
   }, [loadRequest]);
 
+  function handleSetLeague(league: League) {
+    setLeague(league.id);
+
+    navigation.navigate('Seasons');
+  }
+
   if (leagues.error) {
-    // return <Text>Erro</Text>;
+    return (
+      <Custom
+        title="Falha ao buscar as ligas"
+        message="Houve um erro ao tentar pegar as ligas. Por favor tente recarregar."
+        onPress={() => loadRequest()}
+        buttonText="Recarregar"
+      />
+    );
   }
 
   if (leagues.loading) {
-    return <Text>Loading</Text>;
+    return <Loading />;
   }
 
   return (
     <Container>
-      <LeagueList
-        data={leagues.data}
-        onItemPress={() => navigation.navigate('Seasons')}
-      />
+      <LeagueList data={leagues.data} onItemPress={handleSetLeague} />
     </Container>
   );
 };

@@ -1,6 +1,6 @@
-import { LeagueData } from '../../../../store/modules/leagues/types';
+import { League, LeagueData } from '../../../../store/modules/leagues/types';
 
 export type Props = {
   data: LeagueData;
-  onItemPress: () => void;
+  onItemPress: (league: League) => void;
 };

@@ -18,7 +18,7 @@ const LeagueList: React.FC<Props> = ({ data, onItemPress }) => {
       keyExtractor={item => item.league.id.toString()}
       data={data.response}
       renderItem={({ item }) => (
-        <LeagueItem {...item.league} onPress={onItemPress} />
+        <LeagueItem league={item.league} onPress={onItemPress} />
       )}
     />
   );

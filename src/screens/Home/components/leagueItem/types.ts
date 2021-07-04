@@ -1,7 +1,6 @@
+import { League } from '../../../../store/modules/leagues/types';
+
 export type Props = {
-  id: number;
-  name: string;
-  type: string;
-  logo: string;
-  onPress: () => void;
+  league: League;
+  onPress: (league: League) => void;
 };

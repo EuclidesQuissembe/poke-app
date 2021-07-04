@@ -7,6 +7,8 @@ import { loadSuccess, loadFailure } from './actions';
 function* loadLeagueAndSeason({ payload }: any): any {
   const { league, season } = payload;
 
+  console.log(league, season);
+
   try {
     const response = yield call(
       api.get,

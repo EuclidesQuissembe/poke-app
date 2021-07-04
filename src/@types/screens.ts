@@ -3,5 +3,6 @@ export type RootListScreensProps = {
   Home: undefined;
   Seasons: undefined;
   Team: undefined;
+  Teams: undefined;
   Standings: undefined;
 };

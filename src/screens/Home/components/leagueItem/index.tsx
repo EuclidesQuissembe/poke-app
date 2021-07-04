@@ -5,18 +5,18 @@ import React from 'react';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 // Styles
-import {Container, ContainerInfo, Name, Type, Logo} from './styles';
+import { Container, ContainerInfo, Name, Type, Logo } from './styles';
 
 // Types
-import {Props} from './types';
+import { Props } from './types';
 
-const LeagueItem: React.FC<Props> = ({name, type, logo, onPress}) => {
+const LeagueItem: React.FC<Props> = ({ league, onPress }) => {
   return (
-    <Container onPress={onPress}>
-      <Logo source={{uri: logo}} />
+    <Container onPress={() => onPress(league)}>
+      <Logo source={{ uri: league.logo }} />
       <ContainerInfo>
-        <Name>{name}</Name>
-        <Type>{type}</Type>
+        <Name>{league.name}</Name>
+        <Type>{league.type}</Type>
       </ContainerInfo>
       <MaterialIcons name="keyboard-arrow-right" size={20} />
     </Container>

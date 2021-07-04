@@ -1,4 +1,4 @@
 export type Props = {
   year: number;
-  onPress: () => void;
+  onPress: (season: number) => void;
 };

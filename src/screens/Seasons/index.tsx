@@ -11,6 +11,11 @@ import * as SeasonsActions from '../../store/modules/seasons/actions';
 
 // Components
 import SeasonList from '../../components/seasonList';
+import Custom from '../../components/custom';
+import Loading from '../../components/loading';
+
+// Context
+import { useApp } from '../../hooks/useApp';
 
 // Styles
 import { Container } from './styles';
@@ -19,24 +24,36 @@ import { Container } from './styles';
 import { Props } from './types';
 
 const Seasons: React.FC<Props> = ({ seasons, loadRequest, navigation }) => {
+  const { setSeason } = useApp();
+
   useEffect(() => {
     loadRequest();
   }, [loadRequest]);
 
+  function handleSetSeason(season: number) {
+    setSeason(season);
+
+    navigation.navigate('Standings');
+  }
+
   if (seasons.error) {
-    return <Text>Erro</Text>;
+    return (
+      <Custom
+        title="Falha ao buscar os anos"
+        message="Houve um erro ao tentar buscar os anos. Por favor tente recarregar."
+        onPress={() => loadRequest()}
+        buttonText="Recarregar"
+      />
+    );
   }
 
   if (seasons.loading) {
-    return <Text>Loading...</Text>;
+    return <Loading />;
   }
 
   return (
     <Container>
-      <SeasonList
-        data={seasons.data}
-        onItemPress={() => navigation.navigate('Standings')}
-      />
+      <SeasonList data={seasons.data} onItemPress={handleSetSeason} />
     </Container>
   );
 };

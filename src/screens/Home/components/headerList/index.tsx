@@ -1,12 +1,9 @@
 import React from 'react';
 
-import { Container, Title, Description } from './styles';
+import { Title } from './styles';
 
 const HeaderList: React.FC = () => {
-	return <Container style={{ elevation: 2 }}>
-		<Title>Leagues</Title>
-		<Description>Selecione a sua liga favorita e saiba mais</Description>
-	</Container>;
-}
+  return <Title>Escolha a sua liga</Title>;
+};
 
 export default HeaderList;
