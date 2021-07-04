@@ -1,22 +1,54 @@
 /**
  * Modules
  */
-import React from 'react';
-import {View, Text} from 'react-native';
+import React, { useEffect } from 'react';
+import { Text } from 'react-native';
+import { connect } from 'react-redux';
+import { bindActionCreators, Dispatch } from 'redux';
 
-// Components
-// import LeagueList from '../../components/leagueList/index';
-import LeagueItem from '../../components/leagueItem';
+// Redux
+import { ApplicationState } from '../../store';
+
+// Actions
+import * as LeagueActions from '../../store/modules/leagues/actions';
 
 // Styles
-import {Container} from './styles';
+import { Container } from './styles'
 
-const Home: React.FC = () => {
+// Components
+import LeagueList from './components/leagueList';
+
+// Types
+import { Props } from './types';
+
+const Home: React.FC<Props> = ({ leagues, loadRequest, navigation }) => {
+  useEffect(() => {
+    loadRequest();
+  }, [loadRequest]);
+
+  if (leagues.error) {
+    // return <Text>Erro</Text>;
+  }
+
+  if (leagues.loading) {
+    return <Text>Loading</Text>;
+  }
+
   return (
     <Container>
-      <LeagueItem />
+      <LeagueList
+        data={leagues.data}
+        onItemPress={() => navigation.navigate('Seasons')}
+      />
     </Container>
   );
 };
 
-export default Home;
+const mapStateToProps = (state: ApplicationState) => ({
+  leagues: state.league,
+});
+
+const mapDispatchToProps = (dispatch: Dispatch) =>
+  bindActionCreators(LeagueActions, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
