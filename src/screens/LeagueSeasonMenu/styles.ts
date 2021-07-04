@@ -2,30 +2,35 @@ import styled from 'styled-components/native';
 
 export const Container = styled.View`
   flex: 1;
-  justify-content: center;
   align-items: center;
   padding: 0 30px;
 `;
 
+export const Logo = styled.Image`
+  width: 150px;
+  height: 150px;
+`;
+
 export const Title = styled.Text`
+  font-size: 28px;
+  margin: 10px 0;
   font-weight: bold;
-  font-size: 30px;
   text-align: center;
 `;
 
-export const Message = styled.Text`
-  font-size: 15px;
-  margin: 10px 0 20px;
-  text-align: center;
+export const Season = styled.Text`
+  font-size: 20px;
+  margin-bottom: 30px;
 `;
 
 export const Button = styled.TouchableOpacity`
-  padding: 7px 10px;
+  width: 100%;
+  padding: 20px 30px;
   border-radius: 10px;
-  background-color: blue;
+  background-color: #fff;
+  margin-bottom: 20px;
 `;
 
 export const ButtonText = styled.Text`
-  color: white;
-  font-size: 16px;
+  font-size: 20px;
 `;

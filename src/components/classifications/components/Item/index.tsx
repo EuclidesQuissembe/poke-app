@@ -7,7 +7,7 @@ import { FlatList } from 'react-native';
 import Standings from '../standings';
 
 // Styles
-import { Container, Name, Season, Country, Flag, Logo } from './styles';
+import { Container, Name, Season, Country, Flag, Logo, Flex } from './styles';
 
 // Types
 import { Props } from './types';
@@ -18,8 +18,10 @@ const Item: React.FC<Props> = ({ league }) => {
       <Logo source={{ uri: league.logo }} />
       <Flag source={{ uri: league.flag }} />
       <Name>{league.name}</Name>
-      <Season>{league.season}</Season>
-      <Country>{league.country}</Country>
+      <Flex>
+        <Season>{league.season}</Season>
+        <Country>{league.country}</Country>
+      </Flex>
 
       <FlatList
         contentContainerStyle={{ backgroundColor: 'red' }}

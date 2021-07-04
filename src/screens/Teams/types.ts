@@ -7,7 +7,7 @@ export interface StateProps {
 }
 
 export interface DispatchProps {
-  loadRequestTeams: (countryName: string) => void;
+  loadRequest: (query: string) => void;
 }
 
 export type Props = StateProps &

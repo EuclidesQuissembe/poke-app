@@ -1,10 +1,10 @@
-import {action} from 'typesafe-actions';
-import {StandingsState, StandingsTypes} from './types';
+import { action } from 'typesafe-actions';
+import { StandingsState, StandingsTypes } from './types';
 
-export const loadRequest = (league: number, season: number) =>
-  action(StandingsTypes.LOAD_REQUEST, {league, season});
+export const loadRequest = (query: string) =>
+  action(StandingsTypes.LOAD_REQUEST, { query });
 
 export const loadSuccess = (data: StandingsState) =>
-  action(StandingsTypes.LOAD_SUCCESS, {data});
+  action(StandingsTypes.LOAD_SUCCESS, { data });
 
 export const loadFailure = () => action(StandingsTypes.LOAD_FAILURE);

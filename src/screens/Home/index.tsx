@@ -35,7 +35,7 @@ const Home: React.FC<Props> = ({ leagues, loadRequest, navigation }) => {
   }, [loadRequest]);
 
   function handleSetLeague(league: League) {
-    setLeague(league.id);
+    setLeague(league);
 
     navigation.navigate('Seasons');
   }

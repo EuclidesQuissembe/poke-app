@@ -11,7 +11,7 @@ import { ApplicationState } from '../../store';
 import * as TeamsActions from '../../store/modules/teams/actions';
 
 // Components
-import Team from './components/team';
+import TeamComponent from './components/team';
 import Custom from '../../components/custom';
 import Loading from '../../components/loading';
 
@@ -20,16 +20,22 @@ import { useApp } from '../../hooks/useApp';
 
 // Types
 import { Props } from './types';
+import { Team } from '../../@types';
 
-const Teams: React.FC<Props> = ({ teams, loadRequestTeams, navigation }) => {
-  const { countryName, setTeamId } = useApp();
+const Teams: React.FC<Props> = ({ teams, loadRequest, navigation }) => {
+  const { query, setTeam, league } = useApp();
+
+  // Set title
+  navigation.setOptions({
+    title: league.name,
+  });
 
   useEffect(() => {
-    loadRequestTeams(countryName);
-  }, [loadRequestTeams]);
+    loadRequest(query);
+  }, [loadRequest]);
 
-  function handleSetTeam(teamId: number) {
-    setTeamId(teamId);
+  function handleSetTeam(team: Team) {
+    setTeam(team);
     navigation.navigate('Team');
   }
 
@@ -38,7 +44,7 @@ const Teams: React.FC<Props> = ({ teams, loadRequestTeams, navigation }) => {
       <Custom
         title="Falha ao buscar os anos"
         message="Houve um erro ao tentar buscar os anos. Por favor tente recarregar."
-        onPress={() => loadRequestTeams(countryName)}
+        onPress={() => loadRequest(query)}
         buttonText="Recarregar"
       />
     );
@@ -50,11 +56,11 @@ const Teams: React.FC<Props> = ({ teams, loadRequestTeams, navigation }) => {
 
   return (
     <FlatList
-      contentContainerStyle={{ backgroundColor: '#fff' }}
       keyExtractor={item => item.team.id.toString()}
+      showsVerticalScrollIndicator={false}
       data={teams.data.response}
       renderItem={({ item }) => (
-        <Team team={item.team} onPress={handleSetTeam} />
+        <TeamComponent team={item.team} onPress={handleSetTeam} />
       )}
     />
   );

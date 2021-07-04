@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 export const Container = styled.TouchableOpacity`
   flex-direction: row;
   align-items: center;
-  margin: 15px 0;
+  padding: 15px 0;
 `;
 
 export const ContainerInfo = styled.View`

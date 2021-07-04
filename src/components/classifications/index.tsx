@@ -17,7 +17,10 @@ const Classifications: React.FC<Props> = ({ data }) => {
   return (
     <Container>
       <FlatList
+        windowSize={2}
         keyExtractor={item => item.league.id.toString()}
+        showsVerticalScrollIndicator={false}
+        extraData={data}
         data={data}
         renderItem={({ item }) => <Item league={item.league} />}
       />

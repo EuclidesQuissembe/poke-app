@@ -2,7 +2,6 @@
  * Modules
  */
 import React, { useEffect } from 'react';
-import { Text } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 import { ApplicationState } from '../../store';
@@ -24,7 +23,7 @@ import { Container } from './styles';
 import { Props } from './types';
 
 const Seasons: React.FC<Props> = ({ seasons, loadRequest, navigation }) => {
-  const { setSeason } = useApp();
+  const { setSeason, league } = useApp();
 
   useEffect(() => {
     loadRequest();
@@ -33,7 +32,7 @@ const Seasons: React.FC<Props> = ({ seasons, loadRequest, navigation }) => {
   function handleSetSeason(season: number) {
     setSeason(season);
 
-    navigation.navigate('Standings');
+    navigation.navigate('LeagueSeasonMenu');
   }
 
   if (seasons.error) {

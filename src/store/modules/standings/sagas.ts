@@ -5,9 +5,9 @@ import { StandingsTypes } from './types';
 import { loadSuccess, loadFailure } from './actions';
 
 function* loadLeagueAndSeason({ payload }: any): any {
-  const { league, season } = payload;
+  const { query } = payload;
 
-  console.log(league, season);
+  console.log(query);
 
   try {
     const response = yield call(

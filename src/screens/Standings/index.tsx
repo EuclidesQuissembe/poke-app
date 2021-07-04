@@ -2,7 +2,6 @@
  * Modules
  */
 import React, { useEffect } from 'react';
-import { Text } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 import { ApplicationState } from '../../store';
@@ -28,7 +27,7 @@ const Standings: React.FC<Props> = ({ standings, loadRequest }) => {
   const { league, season } = useApp();
 
   useEffect(() => {
-    loadRequest(league, season);
+    loadRequest(`?league=${league.id}&season=${season}`);
   }, [loadRequest]);
 
   if (standings.error) {
@@ -36,7 +35,7 @@ const Standings: React.FC<Props> = ({ standings, loadRequest }) => {
       <Custom
         title="Falha ao buscar os anos"
         message="Houve um erro ao tentar buscar os anos. Por favor tente recarregar."
-        onPress={() => loadRequest(league, season)}
+        onPress={() => loadRequest(`?league=${league.id}&season=${season}`)}
         buttonText="Recarregar"
       />
     );

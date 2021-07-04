@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
-import { Country } from '../store/modules/countries/types';
+import { League } from '../store/modules/leagues/types';
 
 export interface APIData<Data> {
   results: number;
@@ -16,12 +16,14 @@ export interface Team {
 }
 
 export interface AppContextData {
-  league: number;
+  query: string;
+  league: League;
   season: number;
   countryName: string;
-  teamId: number;
-  setLeague: Dispatch<SetStateAction<number>>;
+  team: Team;
+  setQuery: Dispatch<SetStateAction<string>>;
+  setLeague: Dispatch<SetStateAction<League>>;
   setSeason: Dispatch<SetStateAction<number>>;
   setCountryName: Dispatch<SetStateAction<string>>;
-  setTeamId: Dispatch<SetStateAction<number>>;
+  setTeam: Dispatch<SetStateAction<Team>>;
 }

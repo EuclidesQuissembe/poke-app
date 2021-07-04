@@ -4,5 +4,6 @@ export type RootListScreensProps = {
   Seasons: undefined;
   Team: undefined;
   Teams: undefined;
+  LeagueSeasonMenu: undefined;
   Standings: undefined;
 };

@@ -9,7 +9,6 @@ import {
   Group,
   Form,
   Status,
-  Update,
   Played,
   Win,
   Draw,
@@ -18,6 +17,13 @@ import {
   Against,
   Name,
   Logo,
+  Team,
+  All,
+  Subtitle,
+  Col,
+  TableTitle,
+  Flex,
+  Text,
 } from './styles';
 
 import { Props } from './types';
@@ -25,42 +31,120 @@ import { Props } from './types';
 const Standing: React.FC<Props> = ({ standing }) => {
   return (
     <Container>
-      <Rank>{standing.rank}</Rank>
-      <Points>{standing.points}</Points>
-      <GoalsDiff>{standing.goalsDiff}</GoalsDiff>
-      <Group>{standing.group}</Group>
-      <Form>{standing.form}</Form>
-      <Status>{standing.status}</Status>
-      <Update>{standing.update}</Update>
+      {/* Team */}
+      <Team>
+        <Logo source={{ uri: standing.team.logo }} />
+        <Name>{standing.team.name}</Name>
+      </Team>
       <Description>{standing.description}</Description>
 
-      {/* Team */}
-      <Logo source={{ uri: standing.team.logo }} />
-      <Name>{standing.team.name}</Name>
+      <Flex>
+        <Col>
+          <Text>Rank</Text>
+          <Rank>{standing.rank}</Rank>
+        </Col>
+        <Col>
+          <Text>Pontos</Text>
+          <Points>{standing.points}</Points>
+        </Col>
+        <Col>
+          <Text>Golos de Diferença</Text>
+          <GoalsDiff>{standing.goalsDiff}</GoalsDiff>
+        </Col>
+      </Flex>
+
+      <Flex>
+        <Group>{standing.group}</Group>
+        <Form>{standing.form}</Form>
+        <Status>{standing.status}</Status>
+      </Flex>
 
       {/* All */}
-      <Played>{standing.all.played}</Played>
-      <Win>{standing.all.win}</Win>
-      <Draw>{standing.all.draw}</Draw>
-      <Lose>{standing.all.lose}</Lose>
-      <For>{standing.all.goals.for}</For>
-      <Against>{standing.all.goals.against}</Against>
+      <Subtitle>Total</Subtitle>
+      <All>
+        <Col>
+          <TableTitle>J</TableTitle>
+          <Played>{standing.all.played}</Played>
+        </Col>
+        <Col>
+          <TableTitle>V</TableTitle>
+          <Win>{standing.all.win}</Win>
+        </Col>
+        <Col>
+          <TableTitle>E</TableTitle>
+          <Draw>{standing.all.draw}</Draw>
+        </Col>
+        <Col>
+          <TableTitle>D</TableTitle>
+          <Lose>{standing.all.lose}</Lose>
+        </Col>
+        <Col>
+          <TableTitle>GM</TableTitle>
+          <For>{standing.all.goals.for}</For>
+        </Col>
+        <Col>
+          <TableTitle>GS</TableTitle>
+          <Against>{standing.all.goals.against}</Against>
+        </Col>
+      </All>
 
       {/* Home */}
-      <Played>{standing.home.played}</Played>
-      <Win>{standing.home.win}</Win>
-      <Draw>{standing.home.draw}</Draw>
-      <Lose>{standing.home.lose}</Lose>
-      <For>{standing.home.goals.for}</For>
-      <Against>{standing.home.goals.against}</Against>
+      <Subtitle>Casa</Subtitle>
+      <All>
+        <Col>
+          <TableTitle>J</TableTitle>
+          <Played>{standing.home.played}</Played>
+        </Col>
+        <Col>
+          <TableTitle>V</TableTitle>
+          <Win>{standing.home.win}</Win>
+        </Col>
+        <Col>
+          <TableTitle>E</TableTitle>
+          <Draw>{standing.home.draw}</Draw>
+        </Col>
+        <Col>
+          <TableTitle>D</TableTitle>
+          <Lose>{standing.home.lose}</Lose>
+        </Col>
+        <Col>
+          <TableTitle>GM</TableTitle>
+          <For>{standing.home.goals.for}</For>
+        </Col>
+        <Col>
+          <TableTitle>GS</TableTitle>
+          <Against>{standing.home.goals.against}</Against>
+        </Col>
+      </All>
 
       {/* Away */}
-      <Played>{standing.away.played}</Played>
-      <Win>{standing.away.win}</Win>
-      <Draw>{standing.away.draw}</Draw>
-      <Lose>{standing.away.lose}</Lose>
-      <For>{standing.away.goals.for}</For>
-      <Against>{standing.away.goals.against}</Against>
+      <Subtitle>Fora</Subtitle>
+      <All>
+        <Col>
+          <TableTitle>J</TableTitle>
+          <Played>{standing.away.played}</Played>
+        </Col>
+        <Col>
+          <TableTitle>V</TableTitle>
+          <Win>{standing.away.win}</Win>
+        </Col>
+        <Col>
+          <TableTitle>E</TableTitle>
+          <Draw>{standing.away.draw}</Draw>
+        </Col>
+        <Col>
+          <TableTitle>D</TableTitle>
+          <Lose>{standing.away.lose}</Lose>
+        </Col>
+        <Col>
+          <TableTitle>GM</TableTitle>
+          <For>{standing.away.goals.for}</For>
+        </Col>
+        <Col>
+          <TableTitle>GS</TableTitle>
+          <Against>{standing.away.goals.against}</Against>
+        </Col>
+      </All>
     </Container>
   );
 };

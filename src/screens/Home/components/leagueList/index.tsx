@@ -15,6 +15,8 @@ const LeagueList: React.FC<Props> = ({ data, onItemPress }) => {
   return (
     <FlatList
       ListHeaderComponent={<HeaderList />}
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={{ paddingHorizontal: 20 }}
       keyExtractor={item => item.league.id.toString()}
       data={data.response}
       renderItem={({ item }) => (

@@ -1,3 +1,5 @@
+import { StackScreenProps } from '@react-navigation/stack';
+import { RootListScreensProps } from '../../@types/screens';
 import { TeamsState } from '../../store/modules/teams/types';
 
 export type StateProps = {
@@ -5,7 +7,9 @@ export type StateProps = {
 };
 
 export type DispatchProps = {
-  loadRequestTeam: (teamId: number) => void;
+  loadRequest: (query: string) => void;
 };
 
-export type Props = StateProps & DispatchProps;
+export type Props = StateProps &
+  DispatchProps &
+  StackScreenProps<RootListScreensProps>;

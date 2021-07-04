@@ -1,12 +1,9 @@
 import { APIData, Team } from '../../../@types';
 
 export enum TeamsTypes {
-  LOAD_REQUEST_TEAMS = '@teams/LOAD_REQUEST_TEAMS',
-  LOAD_REQUEST_TEAM = '@teams/LOAD_REQUEST_TEAM',
-  LOAD_SUCCESS_TEAMS = '@teams/LOAD_SUCCESS_TEAMS',
-  LOAD_SUCCESS_TEAM = '@teams/LOAD_SUCCESS_TEAM',
-  LOAD_FAILURE_TEAMS = '@teams/LOAD_FAILURE_TEAMS',
-  LOAD_FAILURE_TEAM = '@teams/LOAD_FAILURE_TEAM',
+  LOAD_REQUEST = '@teams/LOAD_REQUEST`',
+  LOAD_SUCCESS = '@teams/LOAD_SUCCESS',
+  LOAD_FAILURE = '@teams/LOAD_FAILURE',
 }
 
 export interface Venue {

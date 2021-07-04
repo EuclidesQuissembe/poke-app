@@ -14,7 +14,7 @@ import { Props } from './types';
 
 const Team: React.FC<Props> = ({ team, onPress }) => {
   return (
-    <Container onPress={() => onPress(team.id)}>
+    <Container onPress={() => onPress(team)}>
       <Logo source={{ uri: team.logo }} />
       <Flex>
         <Name>{team.name}</Name>

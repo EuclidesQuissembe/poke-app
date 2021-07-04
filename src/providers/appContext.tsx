@@ -2,7 +2,8 @@
  * Modules
  */
 import React, { createContext, useState } from 'react';
-import { AppContextData } from '../@types';
+import { AppContextData, Team } from '../@types';
+import { League } from '../store/modules/leagues/types';
 
 /**
  *  Create context
@@ -13,10 +14,11 @@ export const AppContext = createContext<AppContextData>({} as AppContextData);
  * Create Provider
  */
 export const AppProvider: React.FC = ({ children }) => {
-  const [league, setLeague] = useState<number>(0);
+  const [query, setQuery] = useState<string>('');
+  const [league, setLeague] = useState<League>({} as League);
   const [season, setSeason] = useState<number>(0);
   const [countryName, setCountryName] = useState<string>('');
-  const [teamId, setTeamId] = useState<number>(0);
+  const [team, setTeam] = useState<Team>({} as Team);
 
   return (
     <AppContext.Provider
@@ -24,11 +26,13 @@ export const AppProvider: React.FC = ({ children }) => {
         league,
         season,
         countryName,
-        teamId,
+        team,
         setLeague,
         setSeason,
         setCountryName,
-        setTeamId,
+        setTeam,
+        query,
+        setQuery,
       }}>
       {children}
     </AppContext.Provider>
