@@ -34,7 +34,7 @@ const Standings: React.FC<Props> = ({ standings, loadRequest }) => {
     return (
       <Custom
         title="Falha ao buscar os anos"
-        message="Houve um erro ao tentar buscar os anos. Por favor tente recarregar."
+        message="Houve um erro ao tentar buscar as classificações. Por favor tente recarregar."
         onPress={() => loadRequest(`?league=${league.id}&season=${season}`)}
         buttonText="Recarregar"
       />

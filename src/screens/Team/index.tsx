@@ -53,7 +53,7 @@ const Team: React.FC<Props> = ({ team, loadRequest, navigation }) => {
     return (
       <Custom
         title="Falha ao buscar os anos"
-        message="Houve um erro ao tentar buscar os anos. Por favor tente recarregar."
+        message="Houve um erro ao tentar buscar a equipa selecionada. Por favor tente recarregar."
         onPress={() => loadRequest(`?id=${t.id}`)}
         buttonText="Recarregar"
       />

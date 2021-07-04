@@ -1,3 +1,5 @@
+import { APIData } from '../../../@types';
+
 export enum LeaguesTypes {
   LOAD_REQUEST = '@league/LOAD_REQUEST',
   LOAD_SUCCESS = '@league/LOAD_SUCCESS',
@@ -15,13 +17,8 @@ export interface LeagueResponse {
   league: League;
 }
 
-export interface LeagueData {
-  results: number;
-  response: LeagueResponse[];
-}
-
 export interface LeagueState {
-  readonly data: LeagueData;
+  readonly data: APIData<LeagueResponse[]>;
   readonly loading: boolean;
   readonly error: boolean;
 }

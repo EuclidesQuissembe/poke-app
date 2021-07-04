@@ -1,7 +1,8 @@
 /**
  * Modules
  */
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
+import NetInfo from '@react-native-community/netinfo';
 import { AppContextData, Team } from '../@types';
 import { League } from '../store/modules/leagues/types';
 
@@ -17,22 +18,29 @@ export const AppProvider: React.FC = ({ children }) => {
   const [query, setQuery] = useState<string>('');
   const [league, setLeague] = useState<League>({} as League);
   const [season, setSeason] = useState<number>(0);
-  const [countryName, setCountryName] = useState<string>('');
   const [team, setTeam] = useState<Team>({} as Team);
+  const [isConnected, setIsConnected] = useState<boolean | null>(false);
+
+  useEffect(() => {
+    const unsubscribe = NetInfo.addEventListener(state => {
+      setIsConnected(state.isConnected);
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   return (
     <AppContext.Provider
       value={{
         league,
         season,
-        countryName,
         team,
         setLeague,
         setSeason,
-        setCountryName,
         setTeam,
         query,
         setQuery,
+        isConnected,
       }}>
       {children}
     </AppContext.Provider>

@@ -16,14 +16,13 @@ export interface Team {
 }
 
 export interface AppContextData {
+  isConnected: boolean | null;
   query: string;
   league: League;
   season: number;
-  countryName: string;
   team: Team;
   setQuery: Dispatch<SetStateAction<string>>;
   setLeague: Dispatch<SetStateAction<League>>;
   setSeason: Dispatch<SetStateAction<number>>;
-  setCountryName: Dispatch<SetStateAction<string>>;
   setTeam: Dispatch<SetStateAction<Team>>;
 }
