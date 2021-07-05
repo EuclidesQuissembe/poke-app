@@ -10,7 +10,7 @@ import { useApp } from './hooks/useApp';
 /**
  * Screens
  */
-import HomeScreen from './screens/Home';
+const HomeScreen = React.lazy(() => import('./screens/Home'));
 const SeasonsScreen = React.lazy(() => import('./screens/Seasons'));
 const LeagueSeasonScreen = React.lazy(
   () => import('./screens/LeagueSeasonMenu'),
