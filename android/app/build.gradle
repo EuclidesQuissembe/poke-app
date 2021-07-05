@@ -181,6 +181,15 @@ android {
 
         }
     }
+
+    signingConfigs {
+    release {
+      storeFile file('football.keystore')
+      storePassword 'web.designer.2001'
+      keyAlias 'football'
+      keyPassword 'web.designer.2001'
+    }
+  }
 }
 
 dependencies {
