@@ -1,22 +1,72 @@
 /**
  * Modules
  */
-import React from 'react';
-import {View, Text} from 'react-native';
+import React, { useEffect } from 'react';
+import { Text } from 'react-native';
+import { connect } from 'react-redux';
+import { bindActionCreators, Dispatch } from 'redux';
 
-// Components
-// import LeagueList from '../../components/leagueList/index';
-import LeagueItem from '../../components/leagueItem';
+// Redux
+import { ApplicationState } from '../../store';
+
+// Actions
+import * as LeagueActions from '../../store/modules/leagues/actions';
 
 // Styles
-import {Container} from './styles';
+import { Container } from './styles';
 
-const Home: React.FC = () => {
+// Context
+import { useApp } from '../../hooks/useApp';
+
+// Components
+import LeagueList from './components/leagueList';
+import Custom from '../../components/custom';
+import Loading from '../../components/loading';
+
+// Types
+import { Props } from './types';
+import { League } from '../../store/modules/leagues/types';
+
+const Home: React.FC<Props> = ({ leagues, loadRequest, navigation }) => {
+  const { setLeague } = useApp();
+
+  useEffect(() => {
+    loadRequest();
+  }, [loadRequest]);
+
+  function handleSetLeague(league: League) {
+    setLeague(league);
+
+    navigation.navigate('Seasons');
+  }
+
+  if (leagues.error) {
+    return (
+      <Custom
+        title="Falha ao buscar as ligas"
+        message="Houve um erro ao tentar pegar as ligas. Por favor tente recarregar."
+        onPress={() => loadRequest()}
+        buttonText="Recarregar"
+      />
+    );
+  }
+
+  if (leagues.loading) {
+    return <Loading />;
+  }
+
   return (
     <Container>
-      <LeagueItem />
+      <LeagueList data={leagues.data} onItemPress={handleSetLeague} />
     </Container>
   );
 };
 
-export default Home;
+const mapStateToProps = (state: ApplicationState) => ({
+  leagues: state.league,
+});
+
+const mapDispatchToProps = (dispatch: Dispatch) =>
+  bindActionCreators(LeagueActions, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
